@@ -539,7 +539,12 @@ class Signer(object):
             isuerserial = et.SubElement(child, namespace + "X509IssuerSerial")
             name = et.SubElement(isuerserial, namespace + "X509IssuerName")
             issuer = sslcert.get_issuer()
-            name.text = "CN=" + issuer.CN +",O=" + issuer.O + ",C=" +issuer.C
+            subject = sslcert.get_subject()
+            # when issuer.CN is not in cert use data from subject
+            if issuer.CN:
+                name.text = "CN=" + issuer.CN +",O=" + issuer.O + ",C=" + issuer.C
+            else:
+                name.text = "CN=" + subject.CN or u'FISKAL 1' +",O=" + subject.O + ",C=" + subject.C
             serial = et.SubElement(isuerserial, namespace + "X509SerialNumber")
             serial.text = '{:d}'.format(sslcert.get_serial_number())
 
