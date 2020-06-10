@@ -179,6 +179,18 @@ You can download them from http://www.fina.hr/Default.aspx?art=10758
 
 
 ## Changelog
+### Version 0.8.2 RC
+  * rewrite for python 3.* including setup python_requires key!
+  * pep imporoovments: 
+    - classmethod renamed to lowercase
+    - "== None" changed to "is not None"
+    - type check adapted for python 3.x :
+      In Python 3: 
+            str is like Python 2's unicode, and is used to store text. 
+            What was called str in Python 2 is called bytes in Python 3.
+       all type checks adapted accordingly
+  
+
 ### Version 0.8.1 RC
   * signxml 2 support
   * better handeling of SOAP errors
